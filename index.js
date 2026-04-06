@@ -69,4 +69,19 @@ app.get('/delete/:id',async (req,res)=>{
 })
 
 
+
+app.get('/delete/:id',async (req,res)=>{
+    const db = await connection ();
+    const collection = db.collection(colledctionName);
+    const result = collection.deleteOne({_id:new ObjectId(req.params.id)})
+    if(result)
+    {
+    res.redirect("/")
+    }else{
+    res.send("/some error")
+    }
+})
+
+
+
 app.listen(4500)
